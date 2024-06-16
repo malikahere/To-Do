@@ -1,0 +1,12 @@
+<h1> Delete-Task </h1>
+
+<p> You sure wanna delete this task? -> {{goal}} </p>
+
+<form method="POST" action="{% url 'delete' goal.id %}">
+    {% csrf_token %}
+ 
+  <input class="btn" type="submit" name="Delete task">
+ 
+ </form>
+
+<a href="{% url '' %}"> Cancel </a> 

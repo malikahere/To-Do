@@ -1,0 +1,18 @@
+{% load static %}
+
+ 
+
+<h1> Tasks: </h1>
+
+<form method="POST" action="/">
+ {% csrf_token %}
+ {{Taskform.title}}
+
+ <input class="btn" type="submit" name="Create task">
+
+</form>
+
+{% for goal in tasks %}
+<p> {{goal}} | <a href="{% url 'update' goal.id %}">Update</a> | <a href="{% url 'delete' goal.id %}"> Delete </a></p>
+<p>done - {{goal.completed}}</p>
+{% endfor %}
