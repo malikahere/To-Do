@@ -1,13 +1,74 @@
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Load your custom CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f0f0f0;
+          text-align: center; /* Center-align all text */
+          margin: 0;
+          padding: 0;
+      }
+
+      h1 {
+          color: #333;
+          margin-bottom: 20px;
+      }
+
+      .button-container {
+          display: flex;
+          justify-content: center;
+          margin-top: 20px;
+          gap: 10px;
+      }
+
+      .button-container button {
+          text-decoration: none;
+          display: inline-block;
+          padding: 20px 20px;
+          border: none;
+          border-radius: 20px;
+          cursor: pointer;
+      }
+
+      .button-container .btn-yes {
+          background-color: #ff3333; /* Red background for "Yes" button */
+          color: #fff;
+      }
+
+      .button-container .btn-no {
+          background-color: #337ab7; /* Blue background for "No" button */
+          color: #fff;
+      }
+
+      .button-container button:hover {
+          opacity: 0.8;
+      }
+  </style>
+
+    <title>Delete Task</title>
+</head>
+
+<body>
 <h1> Delete-Task </h1>
 
 <p> You sure wanna delete this task? -> <b>{{goal}}</b> </p>
 
-<form method="POST" action="{% url 'delete' goal.id %}">
-    {% csrf_token %}
- 
-  <input class="btn" type="submit" name="Delete task">
- 
- </form>
-
-<a href="{% url '' %}"> Cancel </a> 
+<div class="button-container">
+  <form method="POST" action="{% url 'delete' goal.id %}">
+      {% csrf_token %}
+      <button type="submit" class="btn-yes">Yes</button>
+  </form>
+  
+  <!-- No Button -->
+  <form action="{% url '' %}">
+      <button type="submit" class="btn-no">No</button>
+  </form>
+</div> 
+</body>
