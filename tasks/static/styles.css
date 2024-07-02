@@ -12,18 +12,17 @@ body {
 h1 {
     text-align: center;
     color: #333;
-    font-size: 25px;
-    margin-top: 200px;
+    font-size: 40px;
+    margin-top: 40px;
 }
 
 form {
     max-width: 300px;
     margin: 40px auto;
-    padding: 20px;
+    padding: 10px;
     background-color: #ffffff;
-    border: 1px solid #ddd;
+    border: 0px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-size: 25px;
 }
 
 input[type="submit"] {
