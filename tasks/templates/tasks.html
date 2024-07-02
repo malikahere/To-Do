@@ -1,18 +1,157 @@
-{% load static %}
+{% comment %} <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
 
- 
+<body>
+    {% load static %}
 
-<h1> TASKS: </h1>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
 
-<form method="POST" action="/">
- {% csrf_token %}
- {{Taskform.title}}
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
 
- <input class="btn" type="submit" name="Create task">
+        form {
+            max-width: 300px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-</form>
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-{% for goal in tasks %}
-<p> {{goal}} | <a href="{% url 'update' goal.id %}">Update</a> | <a href="{% url 'delete' goal.id %}"> Delete </a></p>
-<p>done - {{goal.completed}}</p>
-{% endfor %}
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .task-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            background-color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .task-list li:last-child {
+            border-bottom: none;
+        }
+
+        .task-list a {
+            text-decoration: none;
+            color: #337ab7;
+            margin-left: 10px;
+        }
+
+        .task-list a:hover {
+            color: #23527c;
+        }
+
+        .task-list .task-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .task-list .task-content p {
+            margin: 0;
+        }
+
+        .fas {
+            font-size: 18px;
+        }
+
+        .task-list input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+
+    <h1> TASKS: </h1>
+
+    <form method="POST" action="/">
+        {% csrf_token %}
+        {{Taskform.title}}
+
+        <input class="btn" type="submit" name="Create task">
+    </form>
+
+    <ul class="task-list">
+        {% for goal in tasks %}
+            <li>
+                <div class="task-content">
+                    <input type="checkbox" {% if goal.completed %}checked{% endif %}>
+                    <p>{{ goal }}</p>
+                </div>
+                <div>
+                    <a href="{% url 'update' goal.id %}"><i class="fas fa-edit"></i></a>
+                    <a href="{% url 'delete' goal.id %}"><i class="fas fa-trash-alt"></i></a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</body> {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Tasks</title>
+</head>
+<body>
+    
+
+    <h1>TASKS:</h1>
+
+    <form method="POST" action="/">
+        {% csrf_token %}
+        {{Taskform.title}}
+        <input class="btn" type="submit" name="Create task">
+    </form>
+
+    <ul class="task-list">
+        {% for goal in tasks %}
+            <li>
+                <div class="task-content">
+                    <input type="checkbox" {% if goal.completed %}checked{% endif %}>
+                    <p>{{ goal }}</p>
+                </div>
+                <div>
+                    <a href="{% url 'update' goal.id %}"><i class="fas fa-edit"></i></a>
+                    <a href="{% url 'delete' goal.id %}"><i class="fas fa-trash-alt"></i></a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+</body>
+</html>
